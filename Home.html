@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+    function getParameterByName(name, url) { if (!url) url = window.location.href; name = name.replace(/[\[\]]/g, "\\$&"); var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"), results = regex.exec(url); if (!results) return null; if (!results[2]) return ''; return decodeURIComponent(results[2].replace(/\+/g, " ")); }
+    var name = getParameterByName('q');
+    $(document).ready(function() {
+    $.ajax({
+        url: "http://localhost:8080/User/rest/UserService/user/"+name
+    }).then(function(data) {
+       $('.id').append(data.ID);
+       $('.name').append(data.name);
+       $('.profession').append(data.profession);
+    });
+});
+</script>
+</head>
+    <body bgcolor = "sky blue">
+    <div>
+    <h1 align = "center" class = "name"> Welcome home </h1>
+    </div>
+        <div align = "center">
+            <p class="id">The ID is </p>
+            <p class="name">The name is </p>
+            <p class="profession">The profession is </p>
+        </div>
+    </body>
+</html>

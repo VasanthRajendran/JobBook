@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Post jobs</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#signinButton").click(function(){
+		var emailid = document.getElementById("mail").value;
+		var password = document.getElementById("pwd").value;
+		$.ajax({
+		url: 'http://localhost:8080/User/rest/UserService/login',
+		type: 'POST',
+		data: JSON.stringify({"emailID": emailid,"password":password}),	
+		contentType: 'application/json; charset=utf-8',
+		dataType:'text',
+		async: false,
+		success: function(response){
+			if(response ==="success")
+			{
+			  window.location.href = "JobType.html";
+			}
+			else
+			{
+				alert("Enter valid details");
+			}
+			}
+		})
+	})
+});
+$(document).ready(function(){
+	$("#submitButton").click(function(){
+	var company = document.getElementById("company").value;
+	var name = document.getElementById("name").value;
+	var employee = document.getElementById("employeeno").value;
+	var emailid = document.getElementById("emailid").value;
+	var password = document.getElementById("password").value;
+	document.getElementById("company").value="";
+	document.getElementById("name").value="";
+	document.getElementById("employeeno").value="";
+	document.getElementById("emailid").value="";
+	document.getElementById("password").value="";
+	$.ajax({
+    url: 'http://localhost:8080/User/rest/UserService/adduser',
+    type: 'POST',
+    data: JSON.stringify({"companyName": company, "firstName":name,"employeeNo": employee,"emailId":emailid,"password":password}),
+    contentType: 'application/json; charset=utf-8',
+    dataType: 'json',
+    async: false,
+    success: function() {
+        alert("Sign up successful, login again to proceed");
+    }
+})
+})
+});
+
+</script>
+</head>
+<link rel="stylesheet" type="text/css" href="Home.css">
+<body>
+<form>
+ <div class = "bg"align = "center" ><h1 align = "center"> <font color="white"> Already a member?</font>  </h1>
+       <label>Email ID:</label><input id="mail" type="text" name="emailid" value=""><br>
+      <label>Password:</label> <input id="pwd" type="password" name="password" value=""><br><br>
+       <input type="button" value="Sign in" id="signinButton"></div></form><br><br>
+        <div align = "center" ><h1 align = "center"> <font color="white"> Sign Up with JobBook now</font>  </h1>
+   </div>
+   <form>
+	<div class="adduser" align="center">
+     <br><label>Company Name:</label> <input id = "company" type = "text" name = "ID"
+     value = "" >
+          <br><label>First Name:</label><input id = "name" type = "text" name = "Name"
+     value = "" ><br>
+     <label>Employee No:</label><input id="employeeno" type="number" name="employeeno"
+     value = ""><br>
+     <label>Email ID:</label><input id = "emailid" type = "text" name = "emailid"
+     value = "" ><br>
+     <label>Password:</label><input id = "password" type = "password" name = "password"
+     value = "" ><br>
+     <label>Industry:</label><select id="industry"><option value="Retail">Retail</option>
+<option value="Restaurent">Restaurent</option><option value="Transportation">Transportation</option>
+<option value="Saloon&Spa">Saloon & Spa</option></select><br><br>
+     <br> <input type="button"
+			value="Submit"  id="submitButton"> <br> <br>
+	 </div>
+	</form>
+</body>
+</html>

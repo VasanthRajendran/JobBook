@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>SignUp</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#submitButton").click(function(){
+	var id = document.getElementById("id").value;
+	var name = document.getElementById("name").value;
+	var password = document.getElementById("password").value;
+	var profession = document.getElementById("profession").value;
+	$.ajax({
+    url: 'http://localhost:8080/User/rest/UserService/adduser',
+    type: 'POST',
+    data: JSON.stringify({"ID": id , "name" : name, "password": password, "profession" : profession}),
+    contentType: 'application/json; charset=utf-8',
+    dataType: 'json',
+    async: false,
+    success: function() {
+        alert("Success");
+    }
+})
+})
+});
+</script>
+<link rel="stylesheet" type="text/css" href="Home.css">
+</head>
+<body bgcolor = "Sky blue">
+<form>
+	<div id = "container2" align="center" style="width:800px; margin:0 auto;">
+     <br><label>ID:</label> <input id = "id" type = "text" name = "ID"
+     value = "" ><br>
+          <br><label>Name:</label><input id = "name" type = "text" name = "Name"
+     value = "" ><br>
+     <label>Password:</label><input id="password" type="password" name="password"
+     value = ""><br>
+     <br><label>Profession:</label><input id = "profession" type = "text" name = "profession"
+     value = "" ><br>
+     <br> <input type="button"
+			value="Submit"  id="submitButton"> <br> <br>
+	 </div>
+	</form>
+
+</body>
+</html>

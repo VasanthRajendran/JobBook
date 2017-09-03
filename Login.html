@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#submitButton").click(function(){
+	var username = document.getElementById("username").value;
+	var password = document.getElementById("password").value;
+	$.ajax({
+    url: 'http://localhost:8080/User/rest/UserService/login',
+    type: 'POST',
+    data: JSON.stringify({"username": username , "password" : password}),
+    contentType: 'application/json; charset=utf-8',
+    dataType: 'text',
+    success: function(response) {
+    	alert(response);
+    	if(response === "success")
+    		{
+    		window.location.href = "Home.html?q="+ username;
+    		}
+    		else
+    		{
+    		alert("Invalid Credentials");
+    		}
+    }
+})
+})
+});
+</script>
+<link rel="stylesheet" type="text/css" href="Home.css">
+</head>
+<body bgcolor = "sky blue">
+<div id = "container2" align="center">
+<form>
+    <label>Username:</label>  <input id = "username" type = "text" name = "username"
+     value = "" ><br>
+          <br><label> Password:</label> <input id = "password" type = "text" name = "password"
+     value = "" ><br>
+     <br> <input type="button"
+			value="Submit"  id="submitButton"></form> <br> <br>
+</div>
+</body>
+</html>

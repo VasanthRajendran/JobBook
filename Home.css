@@ -1,0 +1,43 @@
+@CHARSET "ISO-8859-1";
+
+label {
+    display: inline-block;
+    color:white;
+    width:120px;
+    text-align: right;
+    font-weight:bold;
+}
+#submitButton{
+	display: inline-block;
+    width:50px;
+    text-align: right;
+}
+html, body {
+    height:100%;
+} 
+body {
+    background-image: url("Dream.jpg");
+    color:white;
+	height: 100%; 
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+div.heading{
+	color:white;
+}
+
+div.bg{
+	font-weight:bold;
+	color:white;
+	margin:auto
+}
+
+div.adduser{
+	font-weight:bold;
+	color:white;
+}
+
+

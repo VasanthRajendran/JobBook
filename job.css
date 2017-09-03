@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+
+html, body {
+    height:100%;
+} 
+body {
+    background-image: url("Dream.jpg");
+    color:white;
+	height: 100%; 
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+label {
+    display: inline-block;
+    color:white;
+    width:120px;
+    text-align: right;
+    font-weight:bold;
+}
+
+    textarea {
+        vertical-align: middle;     
+    }
+    

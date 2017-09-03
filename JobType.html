@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Job Type</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#submit").click(function(){
+		var title = document.getElementById("title").value;
+		var location = document.getElementById("location").value;
+		var phoneNo = document.getElementById("phonenumber").value;
+		var jobType = document.getElementById("jobtype").value;
+		var description = document.getElementById("description").value;
+		var salary = document.getElementById("salary").value;
+		$.ajax({
+		url: 'http://localhost:8080/User/rest/JobsService/addJob',
+		type: 'POST',
+		data: JSON.stringify({"title": title,"location":location,"phoneNo":phoneNo,"jobType":jobType,"description":description,"salary":salary}),	
+		contentType: 'application/json; charset=utf-8',
+		dataType:'text',
+		async: false,
+		success: function(){
+			window.location.href="job.html?q="+ title;
+			}
+		})
+	})
+});
+</script>
+</head>
+<link rel="stylesheet" type="text/css" href="job.css">
+<body>
+<div align="center"><h1><b>Post a Job</b></h1></div>
+<br>
+<form><div align="center">
+<label>Job Title: </label><input id="title" type="text" value=""><br>
+<label>location:</label><input id="location" type ="text" value=""><br>
+<label>Phone Number:</label><input id="phonenumber" type="number" value=""><br><br>
+<label>Job type:</label><select id="jobtype"><option value="Fulltime">Fulltime</option>
+<option value="contract">Contract</option><option value="volunteer">Volunteer</option>
+<option value="Temporary">Temporary</option></select><br>
+<label class= "text" for="textinput">Job Description:</label>
+<textarea id="description" rows="12" cols="50"></textarea><br><br>
+<label>Salary Offered:</label><input id="salary" type="number" value=""><br><br>
+<input id="submit" type="button" value="Finish">
+</div>
+</form>
+</body>
+</html>
